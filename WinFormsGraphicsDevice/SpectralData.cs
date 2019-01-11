@@ -111,7 +111,7 @@ namespace SpectroNamespace
             int i;
             for (i = 0; i < numberOfElements; i++)
             {
-                this.WaveData.Insert(0, valueToInsert);
+                this.WaveData.Insert(this.WaveData.Count-1, valueToInsert);
                 this.HighestWavelength += this.StepSize;
             }
         }
