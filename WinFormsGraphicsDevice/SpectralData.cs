@@ -15,14 +15,14 @@ namespace SpectroNamespace
         public int LowestWavelength { get; set; }
         public int HighestWavelength { get; set; }
         public int StepSize { get; set; }
-        public List<float> WaveData { get; set; }
+        public SpectralDataLines WaveData { get; set; }
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public SpectralData()
         {
-            WaveData = new List<float>();
+            WaveData = new SpectralDataLines();
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace SpectroNamespace
             int i;
             for (i = 0; i < numberOfElements; i++)
             {
-                this.WaveData.Insert(0, valueToInsert);
+                this.WaveData.Insert(this.WaveData.Count, valueToInsert);
                 this.HighestWavelength += this.StepSize;
             }
         }
@@ -123,6 +123,18 @@ namespace SpectroNamespace
                 this.HighestWavelength,
                 this.StepSize,
                 this.WaveData);
+        }
+    }
+    public class SpectralDataLines : List<float>
+    {
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < this.Count; i++)
+            {
+                sb.AppendLine(this[i].ToString());
+            }
+            return sb.ToString();
         }
     }
 }
